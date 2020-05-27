@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace eShop.Application.Catalog
 {
-    interface IManageProductService
+    public interface IManageProductService
     {
         Task<int> Create(ProductCreateRequest request);
         Task<int> Update(ProductUpdateRequest request);
