@@ -15,27 +15,5 @@
 
         public Language Language { get; set; }
         public Product Product { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //public Product Product { get; set; }
-
-        //public Language Language { get; set; }
-
     }
 }

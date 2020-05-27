@@ -2,11 +2,9 @@
 using eShop.Data.Entities;
 using eShop.Utilities;
 using eShop.ViewModels.Catalog.Products;
-using eShop.ViewModels.Catalog.Products.Manager;
 using eShop.ViewModels.Common;
 using eShopSolution.Application.Common;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -91,7 +89,7 @@ namespace eShop.Application.Catalog
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             // 1. Query
             var query = from p in _context.Products

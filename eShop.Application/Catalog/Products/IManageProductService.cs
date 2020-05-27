@@ -1,9 +1,5 @@
 ﻿using eShop.ViewModels.Catalog.Products;
-using eShop.ViewModels.Catalog.Products.Manager;
 using eShop.ViewModels.Common;
-using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Threading.Tasks;
 
 namespace eShop.Application.Catalog
@@ -17,7 +13,7 @@ namespace eShop.Application.Catalog
         Task<bool> UpdateStock(int productId, int addedQuantity);
         Task AddViewCount(int productId);
         Task<ProductViewModel> GetById(int productId);
-        Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
         //Task<int> AddImage(int productId, List<IFormFile> files);
         //Task<int> RemoveImage(int imageId);
         //Task<int> UpdateImage(int imageId, string caption, bool isDefault);

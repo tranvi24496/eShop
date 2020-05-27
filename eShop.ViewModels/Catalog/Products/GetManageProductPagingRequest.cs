@@ -1,9 +1,9 @@
 ﻿using eShop.ViewModels.Common;
 using System.Collections.Generic;
 
-namespace eShop.ViewModels.Catalog.Products.Manager
+namespace eShop.ViewModels.Catalog.Products
 {
-    public class GetProductPagingRequest : PagingRequestBase
+    public class GetManageProductPagingRequest : PagingRequestBase
     {
         public string keyword { get; set; }
         public List<int> CategoryIds { get; set; }

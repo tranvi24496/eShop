@@ -1,6 +1,5 @@
 ﻿using eShop.Data.EF;
 using eShop.ViewModels.Catalog.Products;
-using eShop.ViewModels.Catalog.Products.Public;
 using eShop.ViewModels.Common;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace eShop.Application.Catalog
             _context = context;
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetPublicProductPagingRequest request)
         {
             // 1. Query
             var query = from p in _context.Products
