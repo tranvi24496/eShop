@@ -16,6 +16,40 @@ namespace eShop.Application.Catalog
             _context = context;
         }
 
+        public async Task<PagedResult<ProductViewModel>> GetAll()
+        {
+            var query = from p in _context.Products
+                        join pt in _context.ProductTranslations on p.Id equals pt.ProductId
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on pic.CategoryId equals c.Id
+                        select new { p, pt, pic };
+            var totalRecord = await query.CountAsync();
+            var data = await query.Select(x => new ProductViewModel()
+                {
+                    Id = x.p.Id,
+                    Price = x.p.Price,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    DateCreated = x.p.DateCreated,
+                    Name = x.pt.Name,
+                    Description = x.pt.Description,
+                    Details = x.pt.Details,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    SeoAlias = x.pt.SeoAlias,
+                    LanguageId = x.pt.LanguageId
+                }).ToListAsync(); ;
+
+            // 4. Result
+            var pageResult = new PagedResult<ProductViewModel>()
+            {
+                TotalRecord = totalRecord,
+                Items = data
+            };
+            return pageResult;
+        }
+
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetPublicProductPagingRequest request)
         {
             // 1. Query

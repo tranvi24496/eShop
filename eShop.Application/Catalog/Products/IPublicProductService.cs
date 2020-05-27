@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 
 namespace eShop.Application.Catalog
 {
-    interface IPublicProductService
+    public interface IPublicProductService
     {
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetPublicProductPagingRequest request);
+        Task<PagedResult<ProductViewModel>> GetAll();
     }
 }
