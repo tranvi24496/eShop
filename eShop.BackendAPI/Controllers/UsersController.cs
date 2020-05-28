@@ -15,6 +15,7 @@ namespace eShop.BackendAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -24,7 +25,7 @@ namespace eShop.BackendAPI.Controllers
         }
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authenticate([FromBody]LoginRequest request)
+        public async Task<IActionResult> Authenticate([FromForm]LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -32,16 +33,17 @@ namespace eShop.BackendAPI.Controllers
             }
             try
             {
-                var token = await _userService.Authenticate(request);
-                if (token != null)
+                var tokenResult = await _userService.Authenticate(request);
+                if (tokenResult != null)
                 {
-                    return Ok(token);
+                    return Ok(new { token = tokenResult });
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            
+
             return BadRequest("Your username or password is incorrect");
         }
         [HttpPost("register")]
