@@ -6,7 +6,7 @@ namespace eShop.Application.Catalog
 {
     public interface IPublicProductService
     {
-        Task<PagedResult<ProductViewModel>> GetAllPaging(GetPublicProductPagingRequest request);
-        Task<PagedResult<ProductViewModel>> GetAll();
+        Task<PagedResult<ProductViewModel>> GetAllPaging(string languageId,GetPublicProductPagingRequest request);
+        //Task<PagedResult<ProductViewModel>> GetAll();
     }
 }

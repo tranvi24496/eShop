@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eShop.Application.Catalog;
 using eShop.Data.EF;
+using eShopSolution.Application.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace eShop.BackendAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddDbContext<EShopDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("eShopDatabase")));
             services.AddControllers();
