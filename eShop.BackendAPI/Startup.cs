@@ -2,7 +2,10 @@ using eShop.Application.Catalog;
 using eShop.Application.System.Users;
 using eShop.Data.EF;
 using eShop.Data.Entities;
+using eShop.ViewModels.System.Users;
 using eShopSolution.Application.Common;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +46,13 @@ namespace eShop.BackendAPI
 
             services.AddDbContext<EShopDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("eShopDatabase")));
-            services.AddControllers();
+
+            //Fluent Validation
+                //for each Model in ViewModel 
+                //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+                //for All Model in Assembly Contain Loginrequestvalidator Model.
+           services.AddControllers().AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Movies Demo", Version = "v1" });
