@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.6.0" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.Data\eShop.Data.csproj" />
+    <ProjectReference Include="..\eShop.Utilities\eShop.Utilities.csproj" />
+    <ProjectReference Include="..\eShop.ViewModels\eShop.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
